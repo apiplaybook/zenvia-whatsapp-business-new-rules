@@ -14,7 +14,7 @@ class AlertProductsBackToStockService {
     // irá percorer os dados da api fake para cada cliente irá ser
     // feita a verificação de produtos no carrinho enviando a mensagem de alerta
     customers.forEach(async (cusomter: any) => {
-      const productsInCart = cusomter.cart;
+      const productsInCart = cusomter.cart; // guarda o length da array cart
 
       const today = new Date();
 
