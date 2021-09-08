@@ -16,7 +16,7 @@ npm run dev
 yarn dev
 ```
 
-Para iniciar rodar api fake com o **json-server**, execute o comando:
+Para iniciar a api fake com o **json-server**, execute o comando:
 
 ```bash
 yarn json-server
