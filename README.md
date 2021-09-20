@@ -1,6 +1,6 @@
 # zenvia-whatsapp-business-new-rules
 
-Aplicação de exemplo de uso da api do WhatsApp através da Zenvia, onde automatizamos o processo de notificações utilizando as novas regras de comunicação do WhatsApp Business API.
+Aplicação de exemplo de uso da api do WhatsApp através da ZENVIA, onde automatizamos o processo de notificações utilizando as novas regras de comunicação do WhatsApp Business API.
 
 ## Como rodar a aplicação
 
@@ -16,7 +16,7 @@ npm run dev
 yarn dev
 ```
 
-Para iniciar rodar api fake que com o **json-server**, execute o comando:
+Para iniciar a api fake com o **json-server**, execute o comando:
 
 ```bash
 yarn json-server
