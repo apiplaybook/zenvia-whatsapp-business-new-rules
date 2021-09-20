@@ -1,22 +1,23 @@
 import sendMessage from "../utils/sendMessages";
 import api from "axios";
 import { args } from "../configs/api";
+//Função para formatar o valor que está no formato inteiro em real
+import formatValueToMoney from "../utils/formatValueToMoney";
 
-// classe para manipular promoções
+//Classe para manipular promoções
 class PromotionService {
-  //metodo que chama a api fake e pega os dados das promoções
+  //Método que chama a api fake e pega os dados das promoções
   public async getPromotion() {
-    //retorno da chamada da api para retornar os dados das promoções
+    //Retorno da chamada da api para retornar os dados das promoções
     const response = await api.get("http://localhost:4000/promotions");
 
     return response.data;
   }
 
-  //metodo para enviar mensagem com a promoção
+  //Método para enviar mensagem com a promoção
   public async sendMessagePromotion({ message }: { message: any }) {
     if (message && message.contents[0].text === "Mais ofertas") {
       const promotion = await this.getPromotion();
-
       return (
         promotion &&
         (await sendMessage({
@@ -24,14 +25,11 @@ class PromotionService {
           to: message.from,
           contents: [
             {
-              type: "template",
-              templateId: "0ca62925-28b3-4efc-b23f-7a45a3c7a4c8",
-              fields: {
-                imageUrl: promotion[0].image,
-                name_product: promotion[0].title as string,
-                price_product: ` ${promotion[0].price.toString()}`,
-                product_link: "www.example.com",
-              },
+              type: "file",
+              fileUrl: promotion[0].image,
+              fileCaption: `${promotion[0].title}\n${formatValueToMoney(
+                promotion[0].price.toString()
+              )}\n\nClique no link abaixo e tenha mais informações:\nhttp://link.com`,
             },
           ],
         }))

@@ -32,7 +32,7 @@ class CustomerService {
     {
       await sendMessage({
         contents: [
-          //Estrutura do template onde será enviado a mensagem conforme os dados da api fake JSON Server
+          //Estrutura do template para onde será enviada a mensagem conforme os dados da API fake JSON Server
           {
             type: "template",
             templateId: "c19443a9-1b36-4dec-a5ba-d3c7a480c90f",
@@ -52,21 +52,19 @@ class CustomerService {
   }
 
   public async alertCustomerProductBackToCart() {
-    //dados retornados da metodo getCustomer
+    //Dados retornados do método getCustomer
     const customers = await this.getCustomer();
 
-    // irá percorer os dados da api fake para cada cliente irá ser
-    // feita a verificação de produtos no carrinho enviando a mensagem de alerta
+    // Para cada customer vai ser feita a verificação de produtos esquecidos no carrinho e horário determinado
     customers.forEach(async (customer: any) => {
       const today = new Date();
 
-      //A vaŕiável hourNow recebera o horário convertido no formato 00:00
+      //A variável hourNow receberá o horário convertido no formato 00:00
       const hourNow = `${formatUnitOfTime(today.getHours())}:${formatUnitOfTime(
         today.getMinutes()
       )}`;
 
-      // será feita uma comparação com o horário atual e o horário que foi configurado no objeto args
-      // se o horário configurado for o horário atual se  tiver produtos no carrinho será enviado a mensagem de alerta
+      //Se o horário configurado for o horário atual e se tiverem produtos no carrinho será enviada a mensagem de alerta
       if (customer.cart.length && hourNow === args.hour_messages) {
         customer.cart.forEach(async (productsCart: any) => {
           this.sendMessageCustomer(productsCart.product, customer);

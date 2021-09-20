@@ -18,6 +18,7 @@ app.post("/", async (request, response) => {
 
     return response.json().send();
   } catch (error) {
+    //@ts-ignore
     return console.error(error.message);
   }
 });
@@ -30,6 +31,7 @@ cron.schedule("* * * * *", async () => {
     //esta função vai mandar um alerta sobre produtos que estão de volta ao estoque.
     await promotionService.alertCustomerProductBackToCart();
   } catch (error) {
+    //@ts-ignore
     return console.error(error.message);
   }
 });
